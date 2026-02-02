@@ -1,0 +1,23 @@
+
+
+// Classe Endereco
+class Endereco {
+  constructor(logradouro, numero, bairro, cidade, estado, cep) {
+    this.logradouro = logradouro;
+    this.numero = numero;
+    this.bairro = bairro;
+    this.cidade = cidade;
+    this.estado = estado;
+    this.cep = cep;
+  }
+}
+
+// Classe Pessoa (composição com Endereco)
+class Pessoa {
+  constructor(nome, cpf, endereco) {
+    this.nome = nome;
+    this.cpf = cpf;
+    this.endereco = endereco; // objeto do tipo Endereco
+  }
+}
+
