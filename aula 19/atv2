@@ -1,0 +1,53 @@
+// ===== Tarefa 2 Empresa e Departamento =====
+
+class Departamento {
+  #nome;
+  constructor(nome) {
+    this.#nome = nome;
+  }
+  get nome() {
+    return this.#nome;
+  }
+}
+
+class Empresa {
+  #nome;
+  #departamentos;
+
+  constructor(nome) {
+    this.#nome = nome;
+    this.#departamentos = [];
+  }
+
+  get nome() {
+    return this.#nome;
+  }
+
+  adicionarDepartamento(departamento) {
+    this.#departamentos.push(departamento);
+  }
+
+  listarDepartamentos() {
+    this.#departamentos.forEach(dep => {
+      console.log(dep.nome);
+    });
+  }
+}
+
+// ===== Uso =====
+
+// Criando departamentos
+const depTI = new Departamento("TI");
+const depRH = new Departamento("RH");
+const depFinancas = new Departamento("Finanças");
+
+// Criando empresa
+const empresa = new Empresa("IFMG");
+
+// Adicionando departamentos à empresa
+empresa.adicionarDepartamento(depTI);
+empresa.adicionarDepartamento(depRH);
+empresa.adicionarDepartamento(depFinancas);
+
+// Listando departamentos
+empresa.listarDepartamentos();
