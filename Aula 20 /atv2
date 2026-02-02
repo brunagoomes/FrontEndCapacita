@@ -1,0 +1,76 @@
+// Classes de erro
+class ValorInvalidoError extends Error {
+  constructor(mensagem) {
+    super(mensagem);
+    this.name = "ValorInvalidoError";
+  }
+}
+
+class SaldoInsuficienteError extends Error {
+  constructor(mensagem) {
+    super(mensagem);
+    this.name = "SaldoInsuficienteError";
+  }
+}
+
+// Classe ContaBancaria com encapsulamento
+class ContaBancaria {
+  #saldo;
+  #titular;
+  #entradas;
+  #saidas;
+
+  constructor(titular) {
+    this.#titular = titular;
+    this.#saldo = 0;
+    this.#entradas = [];
+    this.#saidas = [];
+  }
+
+  consultarSaldo() {
+    return this.#saldo;
+  }
+
+  depositar(valor) {
+    if (typeof valor !== "number" || valor <= 0) {
+      throw new ValorInvalidoError("Valor de depósito inválido.");
+    }
+    this.#saldo += valor;
+    this.#entradas.push(valor);
+  }
+
+  sacar(valor) {
+    if (typeof valor !== "number" || valor <= 0) {
+      throw new ValorInvalidoError("Valor de saque inválido.");
+    }
+    if (valor > this.#saldo) {
+      throw new SaldoInsuficienteError("Saldo insuficiente.");
+    }
+    this.#saldo -= valor;
+    this.#saidas.push(valor);
+  }
+
+  consultarEntradas() {
+    return this.#entradas;
+  }
+
+  consultarSaidas() {
+    return this.#saidas;
+  }
+}
+
+// Uso com try-catch
+try {
+  const conta = new ContaBancaria("Bruna");
+
+  conta.depositar(500);
+  conta.sacar(200);
+
+  console.log("Saldo:", conta.consultarSaldo());
+  console.log("Entradas:", conta.consultarEntradas());
+  console.log("Saídas:", conta.consultarSaidas());
+
+} catch (erro) {
+  console.log("Erro:", erro.name);
+  console.log("Detalhe:", erro.message);
+}
