@@ -1,0 +1,25 @@
+const contaBancaria = {
+  titular: "Bruna Gomes",
+  saldo: 1000,
+
+  depositar(valor) {
+    this.saldo += valor;
+  },
+
+  retirar(valor) {
+    this.saldo -= valor;
+  },
+
+  exibirSaldo() {
+    console.log("Saldo:", this.saldo);
+  }
+};
+
+// Simulação das operações
+contaBancaria.exibirSaldo();   // saldo inicial
+contaBancaria.depositar(500);
+contaBancaria.exibirSaldo();   // após depósito
+contaBancaria.retirar(200);
+contaBancaria.exibirSaldo();   // após saque
+contaBancaria.retirar(1000);
+contaBancaria.exibirSaldo();   // após último saque
