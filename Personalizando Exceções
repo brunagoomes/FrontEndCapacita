@@ -1,0 +1,32 @@
+class ValoresInvalidosError extends Error {
+  constructor(mensagem) {
+    super(mensagem);
+    this.name = "ValoresInvalidosError";
+  }
+}
+
+class DivisaoPorZeroError extends Error {
+  constructor(mensagem) {
+    super(mensagem);
+    this.name = "DivisaoPorZeroError";
+  }
+}
+
+try {
+  let a = Number(prompt("Digite o valor de a: "));
+  let b = Number(prompt("Digite o valor de b: "));
+  let resultado = a / b;
+
+  if (isNaN(resultado)) {
+    throw new ValoresInvalidosError("Valores inválidos!");
+  }
+
+  if (resultado === Infinity || resultado === -Infinity) {
+    throw new DivisaoPorZeroError("Divisão por zero!");
+  }
+
+  alert(resultado);
+} catch (erro) {
+  console.log("Erro: " + erro.name);
+  console.log("Detalhe: " + erro.message);
+}
