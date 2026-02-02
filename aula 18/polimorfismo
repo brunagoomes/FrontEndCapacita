@@ -1,0 +1,92 @@
+// ===============================
+// PARTE 1 – DEFINIÇÃO DAS CLASSES
+// ===============================
+
+class Animal {
+  constructor(nome, numeroPatas) {
+    this.nome = nome;
+    this.numeroPatas = numeroPatas;
+  }
+
+  emitirSom() {
+    return "Som genérico";
+  }
+
+  getNome() {
+    return this.nome;
+  }
+}
+
+class Cachorro extends Animal {
+  emitirSom() {
+    return "Au au";
+  }
+}
+
+class Gato extends Animal {
+  emitirSom() {
+    return "Miau";
+  }
+}
+
+class Passaro extends Animal {
+  emitirSom() {
+    return "Piu piu";
+  }
+}
+
+// ===============================
+// PARTE 2 – MENU INTERATIVO
+// ===============================
+
+const animais = [];
+let opcao;
+
+do {
+  opcao = Number(prompt(
+    "Menu:\n" +
+    "1. Cadastrar Cachorro\n" +
+    "2. Cadastrar Gato\n" +
+    "3. Cadastrar Pássaro\n" +
+    "4. Cadastrar outro Animal\n" +
+    "5. Listar todos os animais\n" +
+    "6. Emitir sons de todos os animais\n" +
+    "0. Sair"
+  ));
+
+  switch (opcao) {
+    case 1: {
+      const nome = prompt("Nome do cachorro:");
+      animais.push(new Cachorro(nome, 4));
+      break;
+    }
+    case 2: {
+      const nome = prompt("Nome do gato:");
+      animais.push(new Gato(nome, 4));
+      break;
+    }
+    case 3: {
+      const nome = prompt("Nome do pássaro:");
+      animais.push(new Passaro(nome, 2));
+      break;
+    }
+    case 4: {
+      const nome = prompt("Nome do animal:");
+      const patas = Number(prompt("Número de patas:"));
+      animais.push(new Animal(nome, patas));
+      break;
+    }
+    case 5:
+      animais.forEach(animal => {
+        console.log(animal.getNome());
+      });
+      break;
+
+    case 6:
+      animais.forEach(animal => {
+        console.log(animal.getNome() + ": " + animal.emitirSom());
+      });
+      break;
+  }
+
+} while (opcao !== 0);
