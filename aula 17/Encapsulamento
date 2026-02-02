@@ -1,0 +1,39 @@
+class ContaBancaria {
+  #saldo;
+  #titular;
+  #entradas;
+  #saidas;
+
+  constructor(titular) {
+    this.#titular = titular;
+    this.#saldo = 0;
+    this.#entradas = [];
+    this.#saidas = [];
+  }
+
+  consultarSaldo() {
+    return this.#saldo;
+  }
+
+  depositar(valor) {
+    if (valor > 0) {
+      this.#saldo += valor;
+      this.#entradas.push(valor);
+    }
+  }
+
+  sacar(valor) {
+    if (valor > 0 && valor <= this.#saldo) {
+      this.#saldo -= valor;
+      this.#saidas.push(valor);
+    }
+  }
+
+  consultarEntradas() {
+    return this.#entradas;
+  }
+
+  consultarSaidas() {
+    return this.#saidas;
+  }
+}
