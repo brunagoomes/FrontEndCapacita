@@ -1,0 +1,19 @@
+/* CSS */
+.btn-interativo {
+  background-color: #0055FF;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  /* Transição suave com ease-out */
+  transition: background-color 0.3s ease-out, 
+              transform 0.3s ease-out, 
+              box-shadow 0.3s ease-out;
+}
+
+.btn-interativo:hover {
+  background-color: #0033AA;
+  transform: scale(1.05); /* Aumenta levemente */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Ganha sombra */
+}
