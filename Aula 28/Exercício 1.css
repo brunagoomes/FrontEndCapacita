@@ -1,0 +1,33 @@
+/* Definindo as variáveis no escopo local do componente */
+.cardContainer {
+  --bg-card: #ffffff;
+  --bg-hover: #f0f0f0;
+  
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  width: 300px;
+  background-color: var(--bg-card);
+  transition: background-color 0.3s ease; /* Transição suave */
+  cursor: pointer;
+}
+
+.cardContainer:hover {
+  background-color: var(--bg-hover);
+}
+
+.image {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin: 12px 0;
+  color: #333;
+}
+
+.description {
+  font-size: 1rem;
+  color: #666;
+}
