@@ -1,0 +1,17 @@
+/* CSS */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none; /* Remove animação de entrada */
+    opacity: 1;      /* Garante que esteja visível */
+  }
+
+  .card:hover img, 
+  .card:hover .btn-comprar {
+    transform: none;      /* Remove movimentos de escala e deslize */
+    transition: none;     /* Torna a transição instantânea */
+  }
+
+  .btn-interativo {
+    transition: background-color 0.01s; /* Apenas mudança de cor rápida */
+  }
+}
