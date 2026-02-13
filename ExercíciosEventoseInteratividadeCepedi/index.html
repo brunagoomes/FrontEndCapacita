@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Tarefas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: #999;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f3f3f3;
+      padding: 8px;
+      margin-bottom: 6px;
+      border-radius: 5px;
+    }
+    button {
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lista de Tarefas</h1>
+
+  <div>
+    <input type="text" id="novaTarefa" placeholder="Nova tarefa...">
+    <button id="adicionarTarefa">Adicionar</button>
+  </div>
+
+  <ul id="listaTarefas"></ul>
+
+  <script>
+    const input = document.getElementById('novaTarefa');
+    const btnAdicionar = document.getElementById('adicionarTarefa');
+    const lista = document.getElementById('listaTarefas');
+
+    // Adicionar tarefa
+    btnAdicionar.addEventListener('click', () => {
+      const texto = input.value.trim();
+      if (!texto) return;
+
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span class="texto">${texto}</span>
+        <div>
+          <button class="concluir">✔</button>
+          <button class="remover">✖</button>
+        </div>
+      `;
+
+      lista.appendChild(li);
+      input.value = '';
+    });
+
+    // Delegação de eventos
+    lista.addEventListener('click', (event) => {
+      const botao = event.target;
+
+      // Encontrar o <li> mais próximo
+      const item = botao.closest('li');
+      if (!item) return;
+
+      if (botao.classList.contains('concluir')) {
+        item.querySelector('.texto').classList.toggle('completed');
+      }
+
+      if (botao.classList.contains('remover')) {
+        item.remove();
+      }
+    });
+  </script>
+</body>
+</html>

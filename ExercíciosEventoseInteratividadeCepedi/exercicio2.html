@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .error {
+            color: red;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input:invalid:not(:focus):not(:placeholder-shown) {
+            border: 1px solid red;
+        }
+        input:valid:not(:placeholder-shown) {
+            border: 1px solid green;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Formulário de Cadastro</h1>
+    <form id="formCadastro">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required>
+            <div id="nomeErro" class="error"></div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <div id="emailErro" class="error"></div>
+        </div>
+        <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" required>
+            <div id="senhaErro" class="error"></div>
+        </div>
+        <div class="form-group">
+            <label for="confirmaSenha">Confirme a senha:</label>
+            <input type="password" id="confirmaSenha" required>
+            <div id="confirmaSenhaErro" class="error"></div>
+        </div>
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <script>
+        // 1. Obter referências aos elementos do DOM
+        const form = document.getElementById('formCadastro');
+        const nomeInput = document.getElementById('nome');
+        const emailInput = document.getElementById('email');
+        const senhaInput = document.getElementById('senha');
+        const confirmaSenhaInput = document.getElementById('confirmaSenha');
+
+        // Obter referências aos elementos de erro
+        const nomeErro = document.getElementById('nomeErro');
+        const emailErro = document.getElementById('emailErro');
+        const senhaErro = document.getElementById('senhaErro');
+        const confirmaSenhaErro = document.getElementById('confirmaSenhaErro');
+
+        // 2. Funções de Validação Específicas
+
+        function validarNome() {
+            const nome = nomeInput.value.trim();
+            if (nome.length < 3) {
+                nomeErro.textContent = 'Nome deve ter no mínimo 3 caracteres.';
+                return false;
+            }
+            nomeErro.textContent = '';
+            return true;
+        }
+
+        function validarEmail() {
+            const email = emailInput.value.trim();
+            // Simples verificação de @ e .
+            if (!email.includes('@') || !email.includes('.')) {
+                emailErro.textContent = 'Email inválido (deve conter @ e .).';
+                return false;
+            }
+            emailErro.textContent = '';
+            return true;
+        }
+
+        function validarSenha() {
+            const senha = senhaInput.value;
+            // Requisito 1: Mínimo 6 caracteres
+            if (senha.length < 6) {
+                senhaErro.textContent = 'Senha deve ter no mínimo 6 caracteres.';
+                return false;
+            }
+            // Requisito 2: Pelo menos 1 número (Usando a expressão regular: /\d/ )
+            if (!/\d/.test(senha)) {
+                senhaErro.textContent = 'Senha deve conter pelo menos 1 número.';
+                return false;
+            }
+            senhaErro.textContent = '';
+            return true;
+        }
+
+        function validarConfirmaSenha() {
+            const senha = senhaInput.value;
+            const confirma = confirmaSenhaInput.value;
+
+            if (confirma !== senha) {
+                confirmaSenhaErro.textContent = 'As senhas não coincidem.';
+                return false;
+            }
+            confirmaSenhaErro.textContent = '';
+            return true;
+        }
+
+        // 3. Função de Validação Geral (para o envio)
+        function validarFormulario() {
+            // Chama todas as validações e usa '&&' para garantir que todas sejam verdadeiras
+            // A ordem é importante para que todas as mensagens de erro sejam exibidas
+            const isNomeValid = validarNome();
+            const isEmailValid = validarEmail();
+            const isSenhaValid = validarSenha();
+            const isConfirmaValid = validarConfirmaSenha(); 
+
+            // Se todas as validações forem verdadeiras, o formulário é válido
+            return isNomeValid && isEmailValid && isSenhaValid && isConfirmaValid;
+        }
+
+        // 4. Adicionar Listeners para Validação em Tempo Real (Evento 'input')
+        // O evento 'input' dispara a cada alteração no valor do campo
+        nomeInput.addEventListener('input', validarNome);
+        emailInput.addEventListener('input', validarEmail);
+        senhaInput.addEventListener('input', validarSenha);
+        confirmaSenhaInput.addEventListener('input', validarConfirmaSenha);
+        
+        // A validação de Confirmação de Senha também deve ser reavaliada se a Senha mudar
+        senhaInput.addEventListener('input', validarConfirmaSenha);
+
+
+        // 5. Adicionar Listener para o Envio do Formulário (Requisito 3)
+        form.addEventListener('submit', function(event) {
+            // Impedir o envio padrão do formulário
+            event.preventDefault(); 
+
+            // Executa a validação final
+            const formValido = validarFormulario();
+
+            if (formValido) {
+                // Se o formulário estiver válido, simula o envio
+                alert('Cadastro realizado com sucesso!');
+                // Aqui você enviaria os dados para um servidor, se fosse um sistema real.
+                form.reset(); // Limpa o formulário
+            } else {
+                // Se houver erros, a função validarFormulario já atualizou as mensagens de erro.
+                alert('Por favor, corrija os erros do formulário antes de cadastrar.');
+            }
+        });
+    </script>
+</body>
+</html>
