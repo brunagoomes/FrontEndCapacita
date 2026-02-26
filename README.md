@@ -1,7 +1,6 @@
 # FrontEndCapacita
 
-
-# # # Repositório dedicado à organização das atividades do curso de **Front-End**, realizado pelo **CEPEDI** em parceria com o **IFMG**.
+# # # Repositório dedicado à organização das atividades do curso de Front-End, realizado pelo CEPEDI em parceria com o IFMG.
 
 
 # # Guia de Navegação Rápida Clique nos links abaixo para acessar os módulos: 
@@ -18,6 +17,7 @@
 2. Dentro de cada aula, você encontrará os arquivos `.html`, `.css` ou `.js` correspondentes. 
 
 *Estudos realizados com foco em desenvolvimento web e práticas modernas.*
+
 
 
 
