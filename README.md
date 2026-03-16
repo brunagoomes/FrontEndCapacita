@@ -8,7 +8,7 @@ Repositório dedicado à organização das atividades do curso de **Front-End**,
 * **[Módulo 02](./Modulo2)** - Noções de UX e UI.
 * **[Módulo 03](./Modulo3)** - Programação e Orientação a Objetos. 
 * **[Módulo 04](./Modulo4)** - HTML + CSS. 
-* **[Módulo 05](./Modulo5)** - Desenvolvimento com React. 
+* **[Módulo 05](./Modulo5)** - Gerenciador de Tarefas. 
 
 
 *Estudos realizados com foco em desenvolvimento web e práticas modernas.*
